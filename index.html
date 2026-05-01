@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egypt Ecological Footprint Infographic</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8f0e4;
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; padding: 20px;
+  }
+
+  .infographic {
+    width: 1200px; background: #f7faf5;
+    border: 1px solid #c8dcc0; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 20px 80px rgba(30,80,40,0.15);
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1a4d2e 0%, #2d6a4f 50%, #1a4d2e 100%);
+    border-bottom: 3px solid #52b788; padding: 36px 50px 30px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .header::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(82,183,136,0.05) 40px, rgba(82,183,136,0.05) 41px);
+  }
+  .country-badge {
+    display: inline-block; background: #52b788; color: #fff; font-size: 10px;
+    font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    padding: 5px 14px; margin-bottom: 12px; border-radius: 3px;
+  }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: #d8f3dc; line-height: 1.1; }
+  .header h1 span { color: #95d5b2; }
+  .header-sub { margin-top: 8px; color: #74c69d; font-size: 13px; font-weight: 300; letter-spacing: 1.5px; text-transform: uppercase; }
+  .header-right { position: relative; text-align: right; }
+  .header-year { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; color: rgba(82,183,136,0.18); line-height: 1; letter-spacing: -4px; }
+  .header-source { color: rgba(82,183,136,0.5); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-top: -10px; }
+
+  .hero {
+    background: #eef6ea; display: grid;
+    grid-template-columns: 1fr 60px 1fr 60px 1fr;
+    border-bottom: 1px solid #c8dcc0; align-items: center;
+  }
+  .hero-metric { padding: 28px 36px; text-align: center; }
+  .hero-metric.red   { border-top: 3px solid #e63946; }
+  .hero-metric.green { border-top: 3px solid #2d6a4f; }
+  .hero-metric.orange{ border-top: 3px solid #e76f51; }
+  .hero-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #52796f; margin-bottom: 8px; }
+  .hero-value { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; line-height: 1; }
+  .hero-value.red    { color: #e63946; }
+  .hero-value.green  { color: #2d6a4f; }
+  .hero-value.orange { color: #e76f51; }
+  .hero-unit { font-size: 12px; color: #52796f; margin-top: 4px; }
+  .hero-divider { display: flex; align-items: center; justify-content: center; }
+  .hero-divider-line { width: 1px; height: 60px; background: #c8dcc0; }
+  .tag-pill { display: inline-block; background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.3); color: #e63946; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-top: 8px; }
+  .tag-pill.green { background: rgba(45,106,79,0.1); border-color: rgba(45,106,79,0.3); color: #2d6a4f; }
+  .deficit-badge { display: inline-block; background: rgba(231,111,81,0.1); border: 1px solid rgba(231,111,81,0.3); color: #e76f51; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; margin-top: 6px; }
+
+  .deficit-visual { background: #f0f7ec; border-bottom: 1px solid #c8dcc0; padding: 24px 50px; display: flex; align-items: center; gap: 40px; }
+  .deficit-title { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #52796f; white-space: nowrap; min-width: 140px; }
+  .deficit-bars { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .deficit-bar-row { display: flex; align-items: center; gap: 12px; }
+  .deficit-bar-label { font-size: 11px; color: #40916c; width: 120px; text-align: right; font-weight: 600; }
+  .deficit-bar-track { height: 28px; background: #dcefd5; border-radius: 2px; overflow: hidden; flex: 1; border: 1px solid #b7d9ab; }
+  .deficit-bar-fill { height: 100%; border-radius: 2px; display: flex; align-items: center; padding-left: 12px; font-size: 11px; font-weight: 700; color: #fff; }
+  .bar-footprint   { background: linear-gradient(90deg, #c0392b, #e63946); width: 14%; }
+  .bar-biocapacity { background: linear-gradient(90deg, #1a4d2e, #2d6a4f); width: 2%; }
+  .deficit-gap { font-size: 11px; color: #52796f; white-space: nowrap; width: 90px; }
+  .deficit-annotation { text-align: right; min-width: 200px; }
+  .big-deficit { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: #e63946; line-height: 1; }
+  .deficit-sub { font-size: 11px; color: #52796f; letter-spacing: 1px; text-transform: uppercase; }
+
+  .main-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .section-card { border-right: 1px solid #c8dcc0; border-bottom: 1px solid #c8dcc0; padding: 22px 26px; background: #f7faf5; }
+  .section-card:nth-child(3n) { border-right: none; }
+  .section-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+  .section-icon { width: 44px; height: 44px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
+  .icon-carbon   { background: rgba(230,57,70,0.1);  border: 1px solid rgba(230,57,70,0.25); }
+  .icon-cropland { background: rgba(45,106,79,0.1);  border: 1px solid rgba(45,106,79,0.25); }
+  .icon-grazing  { background: rgba(231,111,81,0.1); border: 1px solid rgba(231,111,81,0.25); }
+  .icon-fishing  { background: rgba(23,107,135,0.1); border: 1px solid rgba(23,107,135,0.25); }
+  .icon-builtup  { background: rgba(108,99,200,0.08);border: 1px solid rgba(108,99,200,0.2); }
+  .icon-biocap   { background: rgba(82,183,136,0.12);border: 1px solid rgba(82,183,136,0.3); }
+  .section-title    { font-size: 14px; font-weight: 700; color: #1b3a2d; }
+  .section-subtitle { font-size: 10px; color: #52796f; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+
+  .section-visual { margin: 10px 0; height: 112px; border-radius: 6px; overflow: hidden; border: 1px solid #c8dcc0; position: relative; }
+
+  .carbon-scene { width:100%; height:100%; background:linear-gradient(180deg,#dde8cc,#ccdabc 60%,#b8c9a3); position:relative; }
+  .smog { position:absolute;top:0;left:0;right:0;height:48px;background:linear-gradient(180deg,rgba(160,130,80,0.35),transparent); }
+  .factory { position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center; }
+  .chimney { background:#666;border-radius:2px 2px 0 0; }
+  .factory-body { background:#777;border-radius:2px 2px 0 0; }
+  .smoke-puff { position:absolute;border-radius:50%;background:rgba(120,100,60,0.3);animation:rise 3s ease-out infinite; }
+  @keyframes rise { 0%{transform:translateY(0) scale(0.5);opacity:0.6} 100%{transform:translateY(-50px) scale(1.5);opacity:0} }
+
+  .cropland-scene { width:100%;height:100%;background:linear-gradient(180deg,#c5e8b0,#a8d98f);position:relative;overflow:hidden; }
+  .crop-row { position:absolute;bottom:0;left:0;right:0;display:flex;gap:3px;padding:0 6px;align-items:flex-end; }
+  .crop-stalk { flex:1;background:linear-gradient(180deg,#3a8a3a,#2d6a2d);border-radius:2px 2px 0 0; }
+  .nile-band { position:absolute;top:14px;left:0;right:0;height:16px;background:linear-gradient(90deg,transparent,rgba(52,152,219,0.35),transparent); }
+  .nile-label { position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:8px;color:rgba(23,107,135,0.9);white-space:nowrap;letter-spacing:2px;text-transform:uppercase;font-weight:700; }
+
+  .grazing-scene { width:100%;height:100%;background:linear-gradient(180deg,#e8d9a0,#d4c27a 60%,#c2a84e);position:relative;display:flex;align-items:flex-end;padding:8px;gap:10px; }
+  .animal-group { display:flex;flex-direction:column;align-items:center;gap:1px; }
+  .animal-emoji { font-size:18px; }
+  .animal-label { font-size:7px;color:#7a6030;letter-spacing:1px;text-transform:uppercase;font-weight:600; }
+
+  .fishing-scene { width:100%;height:100%;background:linear-gradient(180deg,#b8dde8,#7ec8d6 50%,#4aadbe);position:relative;overflow:hidden; }
+  .boat { position:absolute;font-size:18px; }
+  .wave { position:absolute;height:2px;left:-10px;right:-10px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);border-radius:50%; }
+
+  .builtup-scene { width:100%;height:100%;background:linear-gradient(180deg,#d4cfe8,#c8c0e0);position:relative;display:flex;align-items:flex-end;padding:0 6px;gap:2px;overflow:hidden; }
+  .building { background:linear-gradient(180deg,#6b60a8,#8070c0);border-radius:2px 2px 0 0;flex-shrink:0;position:relative; }
+  .building::after { content:'';position:absolute;top:6px;left:2px;right:2px;height:1px;background:rgba(255,240,180,0.4);box-shadow:0 5px 0 rgba(255,240,180,0.3),0 10px 0 rgba(255,240,180,0.2); }
+
+  .biocap-scene { width:100%;height:100%;background:linear-gradient(180deg,#f0d9a0,#e8c870);position:relative;overflow:hidden; }
+  .desert-bg { position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 60%,rgba(210,170,60,0.3),transparent); }
+  .green-strip { position:absolute;bottom:0;left:0;width:20%;height:100%;background:linear-gradient(90deg,rgba(39,130,60,0.4),transparent);border-right:1px dashed rgba(39,130,60,0.5); }
+  .green-zone-label { position:absolute;bottom:10px;left:3px;font-size:7px;color:rgba(30,100,50,0.7);letter-spacing:1.5px;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);font-weight:700; }
+  .percentage-label { position:absolute;top:10px;right:10px;font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:rgba(140,100,20,0.45); }
+  .percentage-sub { position:absolute;top:38px;right:10px;font-size:8px;color:rgba(140,100,20,0.4);text-align:right;letter-spacing:1px;font-weight:600; }
+
+  .section-data { background:#eef6ea;border-radius:4px;padding:10px 12px;margin-top:10px;border:1px solid #c8dcc0; }
+  .data-row { display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid rgba(0,0,0,0.06); }
+  .data-row:last-child { border-bottom:none; }
+  .data-key { font-size:10px;color:#52796f; }
+  .data-val { font-size:11px;font-weight:700;color:#1b3a2d; }
+  .data-val.red    { color:#e63946; }
+  .data-val.green  { color:#1a4d2e; }
+  .data-val.blue   { color:#176785; }
+  .data-val.orange { color:#e76f51; }
+  .data-val.purple { color:#5c4d9e; }
+  .data-val.teal   { color:#2d6a4f; }
+
+  .section-desc { font-size:11px;color:#52796f;line-height:1.6;margin-top:10px;border-left:3px solid #b7d9ab;padding-left:10px; }
+
+  .footprint-section { border-top:1px solid #c8dcc0;padding:28px 50px;background:#f0f7ec;display:grid;grid-template-columns:280px 1fr;gap:50px;align-items:center; }
+  .fp-comparison-label { font-size:10px;color:#52796f;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px; }
+  .footprint-circles { display:flex;align-items:flex-end;gap:24px;justify-content:center; }
+  .circle-group { text-align:center; }
+  .big-circle { width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e74c3c,#922b21);border:3px solid rgba(230,57,70,0.4);box-shadow:0 8px 32px rgba(230,57,70,0.2);display:flex;align-items:center;justify-content:center;flex-direction:column; }
+  .small-circle { width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#52b788,#1a4d2e);border:2px solid rgba(45,106,79,0.5);box-shadow:0 4px 16px rgba(45,106,79,0.2);display:flex;align-items:center;justify-content:center; }
+  .circle-inner-val { font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff;line-height:1; }
+  .circle-inner-unit { font-size:9px;color:rgba(255,255,255,0.75);letter-spacing:1px; }
+  .small-val { font-size:8px;font-weight:700;color:rgba(255,255,255,0.95); }
+  .circle-label { font-size:10px;color:#52796f;margin-top:8px;letter-spacing:0.5px;text-transform:uppercase; }
+  .vs-divider { font-family:'Playfair Display',serif;font-size:24px;color:#a8c5a0;align-self:center;margin-bottom:30px; }
+
+  .breakdown-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px; }
+  .breakdown-item { background:#f7faf5;border-radius:4px;padding:13px;border:1px solid #c8dcc0;border-left-width:3px; }
+  .breakdown-item.carbon   { border-left-color:#e63946; }
+  .breakdown-item.cropland { border-left-color:#2d6a4f; }
+  .breakdown-item.grazing  { border-left-color:#e76f51; }
+  .breakdown-item.fishing  { border-left-color:#176785; }
+  .breakdown-item.builtup  { border-left-color:#5c4d9e; }
+  .breakdown-item.biocap   { border-left-color:#52b788; }
+  .bd-icon { font-size:17px;margin-bottom:4px; }
+  .bd-name { font-size:10px;font-weight:700;color:#52796f;letter-spacing:0.5px;text-transform:uppercase; }
+  .bd-val  { font-family:'Playfair Display',serif;font-size:21px;font-weight:700;line-height:1;margin-top:4px; }
+  .bd-val.red    { color:#e63946; }
+  .bd-val.green  { color:#2d6a4f; }
+  .bd-val.orange { color:#e76f51; }
+  .bd-val.blue   { color:#176785; }
+  .bd-val.purple { color:#5c4d9e; }
+  .bd-val.teal   { color:#40916c; }
+  .bd-unit { font-size:9px;color:#74a88a;margin-top:2px; }
+  .bd-desc { font-size:9px;color:#74a88a;margin-top:5px;line-height:1.5; }
+
+  .comparison { border-top:2px solid #c8dcc0;padding:28px 50px;background:#eef6ea;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center; }
+  .comparison-title { font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1b3a2d;margin-bottom:6px; }
+  .comparison-sub { font-size:10px;color:#52796f;letter-spacing:1.5px;text-transform:uppercase;line-height:1.7; }
+  .chart-area { display:flex;flex-direction:column;gap:11px; }
+  .chart-row { display:flex;align-items:center;gap:14px; }
+  .chart-country { width:70px;font-size:11px;font-weight:700;color:#52796f;text-align:right; }
+  .chart-bar-track { height:22px;background:#dcefd5;border-radius:2px;flex:1;overflow:hidden;border:1px solid #b7d9ab; }
+  .chart-bar-fill { height:100%;display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:700;color:#fff;border-radius:2px; }
+  .bar-usa     { background:linear-gradient(90deg,#5c4d9e,#7b6ed6);width:calc(7.9/8.4*100%); }
+  .bar-germany { background:linear-gradient(90deg,#b5541a,#e76f51);width:calc(4.6/8.4*100%); }
+  .bar-egypt   { background:linear-gradient(90deg,#c0392b,#e63946);width:calc(1.4/8.4*100%); }
+  .bar-india   { background:linear-gradient(90deg,#1a6b55,#40916c);width:calc(1.1/8.4*100%); }
+  .chart-val { width:70px;font-size:11px;font-weight:700; }
+
+  .footer { background:#1a4d2e;border-top:1px solid #2d6a4f;padding:16px 50px;display:flex;justify-content:space-between;align-items:center; }
+  .footer-sources { font-size:9px;color:rgba(150,210,170,0.6);letter-spacing:0.5px;line-height:1.8; }
+  .footer-sources strong { color:rgba(150,210,170,0.85); }
+  .footer-note { font-size:9px;color:rgba(150,210,170,0.5);text-align:right;letter-spacing:0.5px; }
+</style>
+</head>
+<body>
+<div class="infographic">
+
+  <div class="header">
+    <div style="position:relative">
+      <div class="country-badge">&#127466;&#127468; Arab Republic of Egypt</div>
+      <h1>Ecological <span>Footprint</span><br>Analysis</h1>
+      <div class="header-sub">Biocapacity &middot; Resource Demand &middot; Environmental Deficit</div>
+    </div>
+    <div class="header-right">
+      <div class="header-year">2025</div>
+      <div class="header-source">Data: Global Footprint Network &middot; World Population Review</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-metric red">
+      <div class="hero-label">Ecological Footprint (2025)</div>
+      <div class="hero-value red">~1.4</div>
+      <div class="hero-unit">gha per capita</div>
+      <div class="tag-pill">&#9888; Demand on Nature</div>
+    </div>
+    <div class="hero-divider"><div class="hero-divider-line"></div></div>
+    <div class="hero-metric green">
+      <div class="hero-label">Biocapacity (2025)</div>
+      <div class="hero-value green">~0.2</div>
+      <div class="hero-unit">gha per capita</div>
+      <div class="tag-pill green">&#127807; Supply from Nature</div>
+    </div>
+    <div class="hero-divider"><div class="hero-divider-line"></div></div>
+    <div class="hero-metric orange">
+      <div class="hero-label">Ecological Deficit (2025)</div>
+      <div class="hero-value orange">&minus;1.2</div>
+      <div class="hero-unit">gha per capita</div>
+      <div class="deficit-badge">&#128308; Severe Overshoot</div>
+    </div>
+  </div>
+
+  <div class="deficit-visual">
+    <div class="deficit-title">Footprint vs.<br>Biocapacity</div>
+    <div class="deficit-bars">
+      <div class="deficit-bar-row">
+        <div class="deficit-bar-label">Ecological Footprint</div>
+        <div class="deficit-bar-track"><div class="deficit-bar-fill bar-footprint">~1.4 gha</div></div>
+        <div class="deficit-gap" style="color:#e63946">&#8593; Demand</div>
+      </div>
+      <div class="deficit-bar-row">
+        <div class="deficit-bar-label">Biocapacity</div>
+        <div class="deficit-bar-track"><div class="deficit-bar-fill bar-biocapacity" style="padding-left:5px;font-size:9px;">~0.2</div></div>
+        <div class="deficit-gap" style="color:#2d6a4f">&#8595; Supply</div>
+      </div>
+    </div>
+    <div class="deficit-annotation">
+      <div class="big-deficit">7&times;</div>
+      <div class="deficit-sub">Footprint exceeds<br>biocapacity by 7&times;</div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-carbon">&#127981;</div>
+        <div><div class="section-title">Carbon Footprint</div><div class="section-subtitle">Industry &middot; Transport &middot; Energy</div></div>
+      </div>
+      <div class="section-visual">
+        <div class="carbon-scene">
+          <div class="smog"></div>
+          <div class="factory" style="left:10px">
+            <div class="chimney" style="width:10px;height:36px;margin-right:5px"></div>
+            <div class="chimney" style="width:10px;height:28px"></div>
+            <div class="factory-body" style="width:32px;height:24px"></div>
+          </div>
+          <div class="factory" style="left:50px">
+            <div class="chimney" style="width:10px;height:46px"></div>
+            <div class="factory-body" style="width:24px;height:20px"></div>
+          </div>
+          <div class="factory" style="left:82px">
+            <div class="chimney" style="width:10px;height:32px;margin-right:4px"></div>
+            <div class="chimney" style="width:10px;height:42px"></div>
+            <div class="factory-body" style="width:36px;height:28px"></div>
+          </div>
+          <div class="smoke-puff" style="left:14px;top:36px;width:15px;height:15px;animation-delay:0s"></div>
+          <div class="smoke-puff" style="left:52px;top:24px;width:13px;height:13px;animation-delay:1s"></div>
+          <div class="smoke-puff" style="left:85px;top:30px;width:14px;height:14px;animation-delay:0.5s"></div>
+          <div style="position:absolute;bottom:0;right:0;left:55%;height:22px;background:#aab890;display:flex;align-items:center;gap:4px;padding:0 6px;overflow:hidden;">
+            <span style="font-size:10px;">&#128663;</span><span style="font-size:10px;">&#128652;</span><span style="font-size:10px;">&#128663;</span>
+          </div>
+          <div style="position:absolute;top:8px;right:8px;font-size:7px;color:rgba(100,60,20,0.6);letter-spacing:1.5px;text-transform:uppercase;text-align:right;font-weight:700;">Cairo<br>Traffic</div>
+        </div>
+      </div>
+      <div class="section-data">
+        <div class="data-row"><span class="data-key">Carbon share of footprint</span><span class="data-val red">~50%</span></div>
+        <div class="data-row"><span class="data-key">Largest component</span><span class="data-val red">Fossil Fuel Use</span></div>
+        <div class="data-row"><span class="data-key">Primary drivers</span><span class="data-val red">Industry &middot; Transport</span></div>
+      </div>
+      <div class="section-desc">Cairo hosts one of Africa's densest traffic networks. Industrial zones and power generation drive carbon demand well beyond Egypt's absorptive capacity.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-cropland">&#127807;</div>
+        <div><div class="section-title">Cropland Footprint</div><div class="section-subtitle">Nile Delta &middot; Food &amp; Fibre</div></div>
+      </div>
+      <div class="section-visual">
+        <div class="cropland-scene">
+          <div class="nile-band"></div>
+          <div class="nile-label">NILE DELTA AGRICULTURE</div>
+          <div class="crop-row">
+            <div class="crop-stalk" style="height:58px"></div><div class="crop-stalk" style="height:72px"></div>
+            <div class="crop-stalk" style="height:52px"></div><div class="crop-stalk" style="height:76px"></div>
+            <div class="crop-stalk" style="height:62px"></div><div class="crop-stalk" style="height:68px"></div>
+            <div class="crop-stalk" style="height:48px"></div><div class="crop-stalk" style="height:70px"></div>
+            <div class="crop-stalk" style="height:60px"></div><div class="crop-stalk" style="height:74px"></div>
+            <div class="crop-stalk" style="height:55px"></div><div class="crop-stalk" style="height:64px"></div>
+          </div>
+          <div style="position:absolute;top:0;left:0;width:10%;height:100%;background:linear-gradient(90deg,rgba(200,160,60,0.25),transparent)"></div>
+          <div style="position:absolute;top:0;right:0;width:10%;height:100%;background:linear-gradient(90deg,transparent,rgba(200,160,60,0.25))"></div>
+          <div style="position:absolute;top:6px;right:7px;font-size:8px;color:rgba(30,80,30,0.7);letter-spacing:1px;text-align:right;font-weight:600;">Wheat &middot; Rice<br>Cotton &middot; Maize</div>
+        </div>
+      </div>
+      <div class="section-data">
+        <div class="data-row"><span class="data-key">Cropland footprint (est.)</span><span class="data-val green">~0.45 gha/cap</span></div>
+        <div class="data-row"><span class="data-key">Fertile land share</span><span class="data-val green">~5% of territory</span></div>
+        <div class="data-row"><span class="data-key">Food import dependency</span><span class="data-val orange">High</span></div>
+      </div>
+      <div class="section-desc">The Nile Delta concentrates virtually all agricultural production. Rapid population growth intensifies cropland pressure on limited arable land.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-grazing">&#128004;</div>
+        <div><div class="section-title">Grazing Land</div><div class="section-subtitle">Livestock &middot; Rural Egypt</div></div>
+      </div>
+      <div class="section-visual">
+        <div class="grazing-scene">
+          <div style="position:absolute;top:0;right:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,rgba(200,160,60,0.35))"></div>
+          <div class="animal-group"><div class="animal-emoji">&#128003;</div><div class="animal-label">Buffalo</div></div>
+          <div class="animal-group"><div class="animal-emoji">&#128017;</div><div class="animal-label">Sheep</div></div>
+          <div class="animal-group"><div class="animal-emoji">&#128016;</div><div class="animal-label">Goat</div></div>
+          <div class="animal-group"><div class="animal-emoji">&#128004;</div><div class="animal-label">Cattle</div></div>
+          <div class="animal-group"><div class="animal-emoji">&#128042;</div><div class="animal-label">Camel</div></div>
+          <div style="position:absolute;top:8px;right:8px;font-size:7px;color:rgba(100,70,10,0.6);letter-spacing:1.5px;text-transform:uppercase;text-align:right;font-weight:600;">Sinai &middot;<br>Delta Region</div>
+        </div>
+      </div>
+      <div class="section-data">
+        <div class="data-row"><span class="data-key">Grazing footprint (est.)</span><span class="data-val orange">~0.20 gha/cap</span></div>
+        <div class="data-row"><span class="data-key">Livestock demand</span><span class="data-val orange">Meat &amp; Dairy</span></div>
+        <div class="data-row"><span class="data-key">Available pastureland</span><span class="data-val orange">Very Limited</span></div>
+      </div>
+      <div class="section-desc">Traditional livestock farming in the Nile Valley and Sinai competes with scarce land resources. Demand outstrips domestic grazing capacity.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-fishing">&#9875;</div>
+        <div><div class="section-title">Fishing Grounds</div><div class="section-subtitle">Mediterranean &middot; Red Sea</div></div>
+      </div>
+      <div class="section-visual">
+        <div class="fishing-scene">
+          <div style="position:absolute;top:8px;left:8px;font-size:8px;color:rgba(23,70,100,0.6);letter-spacing:2px;text-transform:uppercase;font-weight:600;">Mediterranean Sea</div>
+          <div style="position:absolute;top:8px;right:8px;font-size:8px;color:rgba(23,70,100,0.6);letter-spacing:2px;text-transform:uppercase;font-weight:600;">Red Sea &#9658;</div>
+          <div class="boat" style="left:18px;top:32px;">&#9971;</div>
+          <div class="boat" style="left:50%;top:28px;transform:translateX(-50%);">&#128674;</div>
+          <div class="boat" style="right:22px;top:36px;">&#9971;</div>
+          <div class="wave" style="bottom:36px;opacity:0.5"></div>
+          <div class="wave" style="bottom:22px;opacity:0.4"></div>
+          <div class="wave" style="bottom:8px;opacity:0.6"></div>
+          <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(23,70,100,0.6);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;font-weight:600;">Nile Delta Fisheries</div>
+        </div>
+      </div>
+      <div class="section-data">
+        <div class="data-row"><span class="data-key">Fishing footprint (est.)</span><span class="data-val blue">~0.05 gha/cap</span></div>
+        <div class="data-row"><span class="data-key">Key water bodies</span><span class="data-val blue">Med &middot; Red Sea &middot; Nile</span></div>
+        <div class="data-row"><span class="data-key">Marine biocapacity</span><span class="data-val blue">Constrained</span></div>
+      </div>
+      <div class="section-desc">Egypt accesses the Mediterranean, Red Sea, and Nile fisheries. Overfishing pressures and limited marine territory restrict sustainable yield.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-builtup">&#127961;</div>
+        <div><div class="section-title">Built-up Land</div><div class="section-subtitle">Cairo &middot; Urban Expansion</div></div>
+      </div>
+      <div class="section-visual">
+        <div class="builtup-scene">
+          <div class="building" style="width:8px;height:42px"></div><div class="building" style="width:11px;height:66px"></div>
+          <div class="building" style="width:9px;height:50px"></div><div class="building" style="width:16px;height:86px"></div>
+          <div class="building" style="width:12px;height:74px"></div><div class="building" style="width:8px;height:46px"></div>
+          <div class="building" style="width:18px;height:96px"></div><div class="building" style="width:11px;height:70px"></div>
+          <div class="building" style="width:9px;height:56px"></div><div class="building" style="width:14px;height:80px"></div>
+          <div class="building" style="width:8px;height:38px"></div><div class="building" style="width:13px;height:60px"></div>
+          <div class="building" style="width:9px;height:50px"></div><div class="building" style="width:16px;height:72px"></div>
+          <div class="building" style="width:11px;height:88px"></div><div class="building" style="width:14px;height:66px"></div>
+          <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(60,40,120,0.45);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;">CAIRO SKYLINE</div>
+          <div style="position:absolute;top:8px;right:8px;font-size:8px;color:rgba(60,40,120,0.5);text-align:right;line-height:1.4;font-weight:600;">Urban<br>Sprawl<br>+3.7%/yr</div>
+        </div>
+      </div>
+      <div class="section-data">
+        <div class="data-row"><span class="data-key">Built-up footprint (est.)</span><span class="data-val purple">~0.10 gha/cap</span></div>
+        <div class="data-row"><span class="data-key">Cairo metro population</span><span class="data-val purple">~22 million</span></div>
+        <div class="data-row"><span class="data-key">Annual urban growth</span><span class="data-val purple">Rapid expansion</span></div>
+      </div>
+      <div class="section-desc">Cairo is one of Africa's most densely populated megacities. Rapid urbanization converts fertile agricultural land to infrastructure.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-biocap">&#127964;</div>
+        <div><div class="section-title">Biocapacity</div><div class="section-subtitle">Desert Dominance &middot; Scarce Green</div></div>
+      </div>
+      <div class="section-visual">
+        <div class="biocap-scene">
+          <div class="desert-bg"></div>
+          <div class="green-strip"></div>
+          <div class="green-zone-label">Nile Valley</div>
+          <div class="percentage-label">96%</div>
+          <div class="percentage-sub">Desert<br>Coverage</div>
+          <div style="position:absolute;top:50%;left:38%;transform:translateY(-50%);font-size:8px;color:rgba(140,100,20,0.55);letter-spacing:2px;text-transform:uppercase;font-weight:600;">SAHARA DESERT</div>
+          <div style="position:absolute;bottom:10px;right:8px;font-size:8px;color:rgba(30,100,50,0.55);letter-spacing:1px;font-weight:600;">4% Productive Land</div>
+        </div>
+      </div>
+      <div class="section-data">
+        <div class="data-row"><span class="data-key">Total biocapacity (2025)</span><span class="data-val teal">~0.2 gha/cap</span></div>
+        <div class="data-row"><span class="data-key">Productive land area</span><span class="data-val teal">~4% of territory</span></div>
+        <div class="data-row"><span class="data-key">Desert coverage</span><span class="data-val orange">~96% of territory</span></div>
+      </div>
+      <div class="section-desc">Egypt is 96% desert. Biocapacity is among the world's lowest per capita &mdash; confined almost entirely to the narrow Nile corridor.</div>
+    </div>
+
+  </div>
+
+  <div class="footprint-section">
+    <div>
+      <div class="fp-comparison-label">Visual Scale Comparison</div>
+      <div class="footprint-circles">
+        <div class="circle-group">
+          <div class="big-circle">
+            <div class="circle-inner-val">1.4</div>
+            <div class="circle-inner-unit">gha/cap</div>
+          </div>
+          <div class="circle-label">Footprint</div>
+        </div>
+        <div class="vs-divider">vs</div>
+        <div class="circle-group">
+          <div class="small-circle"><div class="small-val">0.2</div></div>
+          <div class="circle-label">Biocapacity</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;padding:10px;background:#fdecea;border:1px solid rgba(230,57,70,0.2);border-radius:4px;">
+        <div style="font-size:10px;color:#52796f;letter-spacing:1px;text-transform:uppercase;">Ecological Deficit</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#e63946;line-height:1.1;">&minus;1.2 gha</div>
+        <div style="font-size:9px;color:#7a9a8a;margin-top:2px;">per capita &middot; (2025)</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#52796f;margin-bottom:14px;">Footprint Component Breakdown (Estimated, gha per capita)</div>
+      <div class="breakdown-grid">
+        <div class="breakdown-item carbon">
+          <div class="bd-icon">&#127981;</div><div class="bd-name">Carbon</div>
+          <div class="bd-val red">~0.70</div><div class="bd-unit">gha per capita</div>
+          <div class="bd-desc">Largest share. Fossil fuels, industrial emissions, Cairo traffic.</div>
+        </div>
+        <div class="breakdown-item cropland">
+          <div class="bd-icon">&#127807;</div><div class="bd-name">Cropland</div>
+          <div class="bd-val green">~0.45</div><div class="bd-unit">gha per capita</div>
+          <div class="bd-desc">Food production for 120M+ population. Nile Delta agriculture.</div>
+        </div>
+        <div class="breakdown-item grazing">
+          <div class="bd-icon">&#128004;</div><div class="bd-name">Grazing</div>
+          <div class="bd-val orange">~0.20</div><div class="bd-unit">gha per capita</div>
+          <div class="bd-desc">Livestock for meat and dairy. Limited pastureland available.</div>
+        </div>
+        <div class="breakdown-item builtup">
+          <div class="bd-icon">&#127961;</div><div class="bd-name">Built-up Land</div>
+          <div class="bd-val purple">~0.10</div><div class="bd-unit">gha per capita</div>
+          <div class="bd-desc">Urban sprawl and infrastructure. Cairo megacity expansion.</div>
+        </div>
+        <div class="breakdown-item fishing">
+          <div class="bd-icon">&#128031;</div><div class="bd-name">Fishing</div>
+          <div class="bd-val blue">~0.05</div><div class="bd-unit">gha per capita</div>
+          <div class="bd-desc">Mediterranean, Red Sea and Nile Delta marine fisheries.</div>
+        </div>
+        <div class="breakdown-item biocap">
+          <div class="bd-icon">&#127807;</div><div class="bd-name">Biocapacity</div>
+          <div class="bd-val teal">~0.20</div><div class="bd-unit">gha per capita</div>
+          <div class="bd-desc">Total supply. 96% desert. Lowest among North African nations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <div>
+      <div class="comparison-title">International Comparison</div>
+      <div class="comparison-sub">Ecological Footprint<br>per capita (gha)<br><br>Source: World Population<br>Review &middot; 2025 Data</div>
+    </div>
+    <div>
+      <div class="chart-area">
+        <div class="chart-row">
+          <div class="chart-country">USA</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill bar-usa">7.90 gha/cap</div></div>
+          <div class="chart-val" style="color:#5c4d9e">7.90</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-country">Germany</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill bar-germany">4.60 gha/cap</div></div>
+          <div class="chart-val" style="color:#e76f51">4.60</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-country" style="color:#e63946;font-weight:800;">EGYPT &#9733;</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill bar-egypt">~1.4</div></div>
+          <div class="chart-val" style="color:#e63946">~1.40</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-country">India</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill bar-india">1.10</div></div>
+          <div class="chart-val" style="color:#40916c">1.10</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-left:84px;padding-top:8px;border-top:1px solid #c8dcc0;">
+        <span style="font-size:9px;color:#7a9a8a;">0 gha</span>
+        <span style="font-size:9px;color:#7a9a8a;">2.1</span>
+        <span style="font-size:9px;color:#7a9a8a;">4.2</span>
+        <span style="font-size:9px;color:#7a9a8a;">6.3</span>
+        <span style="font-size:9px;color:#7a9a8a;">8.4 gha/cap</span>
+      </div>
+      <div style="margin-left:84px;padding-top:6px;font-size:9px;color:#74a88a;">
+        &#9733; Egypt's footprint (~1.4 gha/cap) is below the global average of 2.7 gha, yet its biocapacity (~0.2 gha/cap) creates one of the most severe ecological deficits in the region.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-sources">
+      <strong>DATA SOURCES:</strong><br>
+      [1] World Population Review &mdash; Ecological Footprint by Country 2025 | worldpopulationreview.com<br>
+      [2] Global Footprint Network Open Data Platform &mdash; Egypt Country Trends (2025 Edition) | data.footprintnetwork.org<br>
+      Units: gha = global hectares. "~" denotes approximate values from closest available data year.
+    </div>
+    <div class="footer-note">
+      Prepared for Academic Use &middot; Faculty of Engineering &middot; Environmental Studies<br>
+      <span style="color:rgba(150,210,170,0.35);">All data from verified sources only. &#127807;</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
